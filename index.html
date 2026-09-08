@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Licky Treats | Taste Bud Approved</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="logowhitebg.png">
+</head>
+<!-- Full Image Lightbox Modal -->
+<div class="modal-overlay" id="imageLightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="Full view" style="max-width: 90%; max-height: 85vh; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin: auto; display: block; position: relative; top: 50%; transform: translateY(-50%);">
+</div>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                <img src="logonobg.png" alt="Licky Treats Logo" class="site-logo-img">
+                <span class="brand-name">Licky Treats</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#menu">Menu</a>
+                <a href="#about">About Us</a>
+            </nav>
+            <button class="cart-trigger" id="cartTriggerBtn">
+                <span>🛒 Cart</span>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tagline">✨ Taste Bud Approved</span>
+            <h1>Indulge in Flavors You’ll Always Crave.</h1>
+            <p>Freshly prepared, authentically spiced meals and refreshing natural drinks delivered straight to your doorstep.</p>
+            <a href="#menu" class="btn btn-primary">Explore Menu</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <main class="menu-section" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Freshly Made Menu</h2>
+                <p>Handcrafted daily with premium organic ingredients.</p>
+            </div>
+
+            <!-- Interactive Menu Grid -->
+            <div class="menu-grid" id="menuGrid">
+                <!-- Cards render dynamically via JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-card">
+                <h3>Crafted With Love & Integrity</h3>
+                <p>At Licky Treats, we believe food should be an experience, not just a routine. From our signature rich Basmati Fried Rice to our golden handcrafted Puff Puff and chilled organic drinks, every bite and sip is crafted to perfection.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Bottom Cart Bar (Mobile Only) -->
+    <div class="mobile-cart-bar" id="mobileCartBar">
+        <div class="mobile-cart-info">
+            <span id="mobileCartCount">0 Items</span>
+            <strong id="mobileCartTotal">₦0</strong>
+        </div>
+        <button class="btn btn-primary btn-sm" id="mobileCheckoutBtn">View Order & Checkout</button>
+    </div>
+
+    <!-- Modal Overlay & Slide-out Cart Panel -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button class="close-btn" id="closeCartBtn">&times;</button>
+        </div>
+
+        <div class="cart-body">
+            <!-- Dynamic Cart Items Container -->
+            <div class="cart-items" id="cartItems">
+                <!-- Items populated by JS -->
+            </div>
+
+            <!-- Guest Checkout Form -->
+            <div class="checkout-form-container">
+                <h4>Guest Checkout</h4>
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label for="custName">Full Name *</label>
+                        <input type="text" id="custName" required placeholder="e.g. Chisom Adebayo">
+                    </div>
+                    <div class="form-group">
+                        <label for="custAddress">Delivery Address *</label>
+                        <input type="text" id="custAddress" required placeholder="e.g. 15 Admiralty Way, Lekki Phase 1">
+                    </div>
+                    <div class="form-group">
+                        <label for="custNotes">Phone Number & Delivery Notes *</label>
+                        <input type="text" id="custNotes" required placeholder="e.g. 08012345678 (Call when outside)">
+                    </div>
+                </form>
+            </div>
+
+            <!-- Order Ticket Preview Box -->
+            <div class="ticket-preview-container">
+                <h4>Live Receipt Ticket Preview</h4>
+                <textarea id="orderTicket" readonly rows="8" placeholder="Your formatted receipt ticket will appear here as you add items..."></textarea>
+            </div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total Amount:</span>
+                <strong id="drawerTotal">₦0</strong>
+            </div>
+            <div class="cart-actions">
+                <button class="btn btn-secondary" id="copyOrderBtn">Copy Order Summary</button>
+                <button class="btn btn-whatsapp" id="whatsappBtn">Proceed to WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="brand-logo">
+                    <img src="logonobg.png" alt="Licky Treats Logo" class="site-logo-img footer-logo">
+                    <span class="brand-name light">Licky Treats</span>
+                </div>
+                <p>Taste Bud Approved Goodness.</p>
+            </div>
+            <div class="footer-hours">
+                <h4>Opening Hours</h4>
+                <p>Monday – Sunday: <br> 9:00 AM – 6:00 PM</p>
+                
+            </div>
+            <div class="footer-socials">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/lickytreats?stkn=MW50OXA1MGs1cmFxMg==" target="_blank">Instagram</a>
+                    <a href="https://wa.me/2348108597424" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026| Licky Treats. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
