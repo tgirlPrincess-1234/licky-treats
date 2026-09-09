@@ -85,7 +85,7 @@ function renderMenu() {
                 <p class="food-desc">${item.description}</p>
                 <div class="food-bottom">
                     <span class="food-price">₦${item.price.toLocaleString()}</span>
-                    <button class="btn btn-primary btn-sm" onclick="addToCart('${item.id}')">+ Add to Cart</button>
+                    <button class="btn btn-primary btn-sm add-cart-btn" onclick="addToCart('${item.id}', this)">+ Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -107,13 +107,24 @@ function closeLightbox() {
 // ==========================================
 // 4. Cart Operations
 // ==========================================
-function addToCart(id) {
+function addToCart(id, buttonEl) {
     if (cart[id]) {
         cart[id]++;
     } else {
         cart[id] = 1;
     }
     updateCartUI();
+
+    // Visual button feedback logic
+    if (buttonEl) {
+        buttonEl.textContent = "✓ Added!";
+        buttonEl.classList.add("added-success");
+        
+        setTimeout(() => {
+            buttonEl.textContent = "+ Add to Cart";
+            buttonEl.classList.remove("added-success");
+        }, 1000);
+    }
 }
 
 function changeQty(id, delta) {

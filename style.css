@@ -312,6 +312,17 @@ body {
     font-size: 0.85rem;
 }
 
+/* Add-to-Cart Button Instant Feedback */
+.add-cart-btn {
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.add-cart-btn.added-success {
+    background-color: var(--whatsapp-green) !important;
+    color: white !important;
+    transform: scale(0.96);
+}
+
 /* ==========================================================================
    Menu Grid Section
    ========================================================================== */
