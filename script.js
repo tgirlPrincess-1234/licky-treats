@@ -46,6 +46,7 @@ const cartBadge = document.getElementById("cartBadge");
 const mobileCartBar = document.getElementById("mobileCartBar");
 const mobileCartCount = document.getElementById("mobileCartCount");
 const mobileCartTotal = document.getElementById("mobileCartTotal");
+const cartBadgeMobile = document.getElementById("cartBadgeMobile");
 
 const cartDrawer = document.getElementById("cartDrawer");
 const modalOverlay = document.getElementById("modalOverlay");
@@ -148,6 +149,7 @@ function updateCartUI() {
 
     // Update Badges & Totals
     cartBadge.textContent = count;
+if (cartBadgeMobile) cartBadgeMobile.textContent = count;
     mobileCartCount.textContent = `${count} ${count === 1 ? 'Item' : 'Items'}`;
     mobileCartTotal.textContent = `₦${total.toLocaleString()}`;
     drawerTotal.textContent = `₦${total.toLocaleString()}`;
@@ -283,4 +285,17 @@ function setupEventListeners() {
         const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodedMessage}`;
         window.open(whatsappUrl, "_blank");
     });
+}
+
+// Mobile Navigation Toggle Helpers
+function toggleMobileNav() {
+    const navLinks = document.getElementById('mobileNav');
+    navLinks.classList.toggle('active');
+}
+
+function closeMobileNav() {
+    const navLinks = document.getElementById('mobileNav');
+    if (navLinks) {
+        navLinks.classList.remove('active');
+    }
 }

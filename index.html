@@ -18,22 +18,36 @@
 <body>
 
     <!-- Header / Navigation -->
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="#" class="brand-logo">
-                <img src="logonobg.png" alt="Licky Treats Logo" class="site-logo-img">
-                <span class="brand-name">Licky Treats</span>
-            </a>
-            <nav class="nav-links">
-                <a href="#menu">Menu</a>
-                <a href="#about">About Us</a>
-            </nav>
+    <!-- Header / Navigation -->
+    <!-- Header / Navigation -->
+<header class="navbar">
+    <div class="nav-container">
+        <a href="#" class="brand-logo">
+            <img src="logonobg.png" alt="Licky Treats Logo" class="site-logo-img">
+            <span class="brand-name">Licky Treats</span>
+        </a>
+
+        <!-- Navigation Links Dropdown (Menu & About only) -->
+        <div class="nav-links" id="mobileNav">
+            <a href="#menu" onclick="closeMobileNav()">Menu</a>
+            <a href="#about" onclick="closeMobileNav()">About Us</a>
+        </div>
+
+        <!-- Header Actions: Single Cart + Mobile Hamburger -->
+        <div class="nav-actions">
             <button class="cart-trigger" id="cartTriggerBtn">
                 <span>🛒 Cart</span>
                 <span class="cart-badge" id="cartBadge">0</span>
             </button>
+
+            <button class="hamburger-btn" onclick="toggleMobileNav()" aria-label="Toggle Navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-    </header>
+    </div>
+</header>
 
     <!-- Hero Section -->
     <section class="hero">
