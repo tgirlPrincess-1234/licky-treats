@@ -33,7 +33,7 @@ const menuData = [
 ];
 
 // WhatsApp Target Phone Number (Replace with your actual business phone number)
-const WHATSAPP_PHONE_NUMBER = "2347069213252";
+const WHATSAPP_PHONE_NUMBER = "2348108597424";
 
 // Paystack Test Public Key
 const PAYSTACK_PUBLIC_KEY = "pk_test_0c4f4f97d42eda37e404d2b86bc803fca5e54fd2";
