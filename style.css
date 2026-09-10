@@ -828,3 +828,22 @@ body {
     height: 52px;
     filter: brightness(0) invert(1);
 }
+
+/* Paystack Brand Button */
+.btn-paystack {
+    background-color: #09A5DB;
+    color: white;
+}
+
+.btn-paystack:hover {
+    background-color: #0784af;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(9, 165, 219, 0.3);
+}
+
+/* Adjust Cart Actions for Two Buttons */
+.cart-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}

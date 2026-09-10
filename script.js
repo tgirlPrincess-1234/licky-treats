@@ -33,7 +33,10 @@ const menuData = [
 ];
 
 // WhatsApp Target Phone Number (Replace with your actual business phone number)
-const WHATSAPP_PHONE_NUMBER = "2348108597424";
+const WHATSAPP_PHONE_NUMBER = "2347069213252";
+
+// Paystack Test Public Key
+const PAYSTACK_PUBLIC_KEY = "pk_test_0c4f4f97d42eda37e404d2b86bc803fca5e54fd2";
 
 // State
 let cart = {};
@@ -245,9 +248,109 @@ function closeCart() {
 }
 
 // ==========================================
+// Paystack Payment Logic
+// ==========================================
+function payWithPaystack() {
+    const { count, total } = calculateTotal();
+
+    // 1. Validation Checks
+    if (count === 0) {
+        alert("Please add at least one item to your cart before proceeding.");
+        return;
+    }
+
+    if (!custNameInput.value.trim() || !custAddressInput.value.trim() || !custNotesInput.value.trim()) {
+        alert("Please fill out all 3 guest checkout details before placing your order.");
+        return;
+    }
+
+    // 2. Extract Customer Info
+    const name = custNameInput.value.trim();
+    const phoneAndNotes = custNotesInput.value.trim();
+    
+    // Create a temporary fallback email for Paystack (Paystack requires an email format)
+    const formattedEmail = `customer_${Date.now()}@lickytreats.com`;
+
+    // 3. Initialize Paystack Pop-up
+    const handler = PaystackPop.setup({
+        key: PAYSTACK_PUBLIC_KEY,
+        email: formattedEmail,
+        amount: total * 100, // Amount in Kobo (₦1,000 = 100000)
+        currency: "NGN",
+        metadata: {
+            custom_fields: [
+                { display_name: "Customer Name", variable_name: "customer_name", value: name },
+                { display_name: "Phone/Notes", variable_name: "phone_notes", value: phoneAndNotes }
+            ]
+        },
+        callback: function(response) {
+            // Payment Successful!
+            const refCode = response.reference;
+
+            // Generate ticket with PAID status and Transaction Ref
+            generatePaidTicketText(refCode);
+
+            // Open WhatsApp automatically
+            const encodedMessage = encodeURIComponent(orderTicket.value);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodedMessage}`;
+            
+            closeCart();
+            window.open(whatsappUrl, "_blank");
+        },
+        onClose: function() {
+            alert("Payment window closed. If you experienced an issue, you can try again or use Pay via WhatsApp.");
+        }
+    });
+
+    handler.openIframe();
+}
+
+// Format Order Ticket specifically for Successful Paystack Orders
+function generatePaidTicketText(refCode) {
+    const { total } = calculateTotal();
+    const name = custNameInput.value.trim() || "[Not Provided]";
+    const address = custAddressInput.value.trim() || "[Not Provided]";
+    const notes = custNotesInput.value.trim() || "[Not Provided]";
+
+    let ticket = `==============================\n`;
+    ticket += `        LICKY TREATS ORDER       \n`;
+    ticket += `==============================\n`;
+    ticket += `Hi, I have PAID for my order online\n\n`;
+    ticket += `PAYMENT STATUS: PAID ✓\n`;
+    ticket += `TRANSACTION REF: ${refCode}\n\n`;
+    ticket += `CUSTOMER DETAILS:\n`;
+    ticket += `• Name: ${name}\n`;
+    ticket += `• Address: ${address}\n`;
+    ticket += `• Phone/Notes: ${notes}\n\n`;
+    ticket += `ORDER ITEMS:\n`;
+
+    const keys = Object.keys(cart);
+    keys.forEach((id, idx) => {
+        const item = menuData.find(m => m.id === id);
+        const qty = cart[id];
+        const itemTotal = item.price * qty;
+        ticket += `${idx + 1}. ${item.name} x${qty} - ₦${itemTotal.toLocaleString()}\n`;
+    });
+
+    ticket += `\n------------------------------\n`;
+    ticket += `TOTAL PAID: ₦${total.toLocaleString()}\n`;
+    ticket += `==============================\n`;
+    ticket += `Please process and deliver my order!`;
+
+    orderTicket.value = ticket;
+}
+
+// ==========================================
 // 7. Event Listeners & Actions
 // ==========================================
 function setupEventListeners() {
+
+    // Paystack Online Payment Trigger
+    const paystackBtn = document.getElementById("paystackBtn");
+    if (paystackBtn) {
+        paystackBtn.addEventListener("click", payWithPaystack);
+    }
+
     cartTriggerBtn.addEventListener("click", openCart);
     mobileCheckoutBtn.addEventListener("click", openCart);
     closeCartBtn.addEventListener("click", closeCart);

@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="logowhitebg.png">
+    <!-- Paystack Inline SDK -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
 <!-- Full Image Lightbox Modal -->
 <div class="modal-overlay" id="imageLightbox" onclick="closeLightbox()">
@@ -148,7 +150,8 @@
                 <strong id="drawerTotal">₦0</strong>
             </div>
             <div class="cart-actions">
-                <button class="btn btn-whatsapp" id="whatsappBtn" style="grid-column: span 2; width: 100%;">Proceed to WhatsApp</button>
+                <button class="btn btn-whatsapp" id="whatsappBtn">Complete on WhatsApp</button>
+                <button class="btn btn-paystack" id="paystackBtn">Pay Online (Card/Bank)</button>
             </div>
         </div>
         </div>
@@ -172,7 +175,7 @@
                 <h4>Connect With Us</h4>
                 <div class="social-links">
                     <a href="https://www.instagram.com/lickytreats?stkn=MW50OXA1MGs1cmFxMg==" target="_blank">Instagram</a>
-                    <a href="https://wa.me/2348108597424" target="_blank">WhatsApp</a>
+                    <a href="https://wa.me/2347069213252" target="_blank">WhatsApp</a>
                 </div>
             </div>
         </div>
