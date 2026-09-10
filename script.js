@@ -258,23 +258,22 @@ function setupEventListeners() {
     custAddressInput.addEventListener("input", generateOrderTicketText);
     custNotesInput.addEventListener("input", generateOrderTicketText);
 
-    // Copy Ticket to Clipboard
+    // Copy Ticket to Clipboard with Icon Feedback
     copyOrderBtn.addEventListener("click", () => {
         if (Object.keys(cart).length === 0) {
             alert("Your cart is empty!");
             return;
         }
         
+        const copyTooltip = document.getElementById("copyTooltip");
+        
         navigator.clipboard.writeText(orderTicket.value).then(() => {
-            const originalText = copyOrderBtn.textContent;
-            copyOrderBtn.textContent = "Copied! ✓";
-            copyOrderBtn.style.backgroundColor = "#D4EDDA";
-            copyOrderBtn.style.color = "#155724";
+            copyTooltip.textContent = "Copied! ✓";
+            copyOrderBtn.classList.add("copied");
 
             setTimeout(() => {
-                copyOrderBtn.textContent = originalText;
-                copyOrderBtn.style.backgroundColor = "";
-                copyOrderBtn.style.color = "";
+                copyTooltip.textContent = "Copy";
+                copyOrderBtn.classList.remove("copied");
             }, 2000);
         });
     });

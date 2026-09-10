@@ -128,22 +128,30 @@
 
             <!-- Order Ticket Preview Box -->
             <div class="ticket-preview-container">
-                <h4>Live Receipt Ticket Preview</h4>
+                <div class="ticket-header">
+                    <h4>Live Receipt Ticket Preview</h4>
+                    <button type="button" class="icon-copy-btn" id="copyOrderBtn" title="Copy Order Ticket">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <span class="copy-tooltip" id="copyTooltip">Copy</span>
+                    </button>
+                </div>
                 <textarea id="orderTicket" readonly rows="8" placeholder="Your formatted receipt ticket will appear here as you add items..."></textarea>
             </div>
-        </div>
+            </div>
 
-        <div class="cart-footer">
+       <div class="cart-footer">
             <div class="cart-total-row">
                 <span>Total Amount:</span>
                 <strong id="drawerTotal">₦0</strong>
             </div>
             <div class="cart-actions">
-                <button class="btn btn-secondary" id="copyOrderBtn">Copy Order Summary</button>
-                <button class="btn btn-whatsapp" id="whatsappBtn">Proceed to WhatsApp</button>
+                <button class="btn btn-whatsapp" id="whatsappBtn" style="grid-column: span 2; width: 100%;">Proceed to WhatsApp</button>
             </div>
         </div>
-    </div>
+        </div>
 
     <!-- Footer -->
     <footer class="site-footer">
