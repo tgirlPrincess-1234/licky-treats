@@ -294,8 +294,8 @@ function payWithPaystack() {
             const encodedMessage = encodeURIComponent(orderTicket.value);
             const whatsappUrl = `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodedMessage}`;
             
-            closeCart();
-            window.open(whatsappUrl, "_blank");
+            window.location.href = whatsappUrl;
+
         },
         onClose: function() {
             alert("Payment window closed. If you experienced an issue, you can try again or use Pay via WhatsApp.");
