@@ -28,7 +28,49 @@ const menuData = [
         name: "Fruity Zobo",
         description: "Refreshing hibiscus tea infused with natural fresh fruits and aromatic spices.",
         price: 1800,
-        image: "fruity-zobo.jpeg"
+        image: "fruity-zobo.png"
+    },
+    {
+        id: "m5",
+        name: "Turkey",
+        description: "Succulent, slow-roasted turkey seasoned with rich local spices and seared for a deep, savory finish.",
+        price: 7000,
+        image: "turkey.png"
+    },
+    {
+        id: "m6",
+        name: "Chicken",
+        description: "Tender, flame-grilled chicken marinated in aromatic herbs and spiced to juicy perfection.",
+        price: 4000,
+        image: "chicken.png"
+    },
+    {
+        id: "m7",
+        name: "Coconut Rice",
+        description: "Fragrant rice simmered in creamy coconut milk and infused with light, sweet-savory spices.",
+        price: 5000,
+        image: "coconut-rice.png"
+    },
+    {
+        id: "m8",
+        name: "Jollof Rice",
+        description: "Iconic smoky long-grain rice cooked to perfection in a rich, spiced tomato and pepper reduction.",
+        price: 4500,
+        image: "jollof-rice.png"
+    },
+    {
+        id: "m9",
+        name: "Fried Rice",
+        description: "Vibrant, savory rice stir-fried with crisp garden vegetables, sweet corn, and subtle house seasonings.",
+        price: 4500,
+        image: "fried-rice.png"
+    },
+    {
+        id: "m10",
+        name: "Singapore Noodles",
+        description: "Springy thin vermicelli noodles wok-tossed with fresh veggies, warm curry spices, and a hint of sesame.",
+        price: 6500,
+        image: "singapore-noodles.png"
     }
 ];
 
