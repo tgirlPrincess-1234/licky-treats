@@ -33,7 +33,7 @@ const menuData = [
 ];
 
 // WhatsApp Target Phone Number
-const WHATSAPP_PHONE_NUMBER = "2348086146657";
+const WHATSAPP_PHONE_NUMBER = "2347069213252";
 
 // Paystack Test Public Key
 const PAYSTACK_PUBLIC_KEY = "pk_test_0c4f4f97d42eda37e404d2b86bc803fca5e54fd2";
@@ -239,13 +239,33 @@ function openCart() {
     cartDrawer.classList.add("active");
     modalOverlay.classList.add("active");
     document.body.style.overflow = "hidden";
+
+    // Push a dummy history state so the mobile back button/gesture closes the cart
+    if (window.location.hash !== "#cart") {
+        history.pushState({ cartOpen: true }, "", "#cart");
+    }
 }
 
 function closeCart() {
     cartDrawer.classList.remove("active");
     modalOverlay.classList.remove("active");
     document.body.style.overflow = "auto";
+
+    // Clean up the URL hash if it's still present
+    if (window.location.hash === "#cart") {
+        history.back();
+    }
 }
+
+// Listen for the user's mobile back gesture/button
+window.addEventListener("popstate", function (event) {
+    // If the cart is open when back is triggered, close it cleanly
+    if (cartDrawer.classList.contains("active")) {
+        cartDrawer.classList.remove("active");
+        modalOverlay.classList.remove("active");
+        document.body.style.overflow = "auto";
+    }
+});
 
 // ==========================================
 // Paystack Payment Logic
