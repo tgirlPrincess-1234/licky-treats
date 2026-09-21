@@ -214,7 +214,10 @@ body {
    Hero Section
    ========================================================================== */
 .hero {
+    
     background: linear-gradient(135deg, #7A223B 0%, #511324 100%);
+    background-image: url("cookbg.jpg");
+    /* background-position: c; */
     color: white;
     padding: 5rem 1.25rem;
     text-align: center;
@@ -223,7 +226,7 @@ body {
 
 .hero-content {
     max-width: 750px;
-    margin: 0 auto;
+    margin: 35px auto;
 }
 
 .hero-tagline {
